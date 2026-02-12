@@ -1,14 +1,266 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
-</head>
-<body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Will You Be My Valentine? 💕</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Floating Hearts Background -->
+    <div class="hearts-background" id="heartsBackground"></div>
+
+    <!-- Start Screen -->
+    <section id="startSection" class="section active">
+      <div class="start-content">
+        <h1 class="start-title">💕 A Special Message For You 💕</h1>
+        <p class="start-subtitle">Click below to begin our journey...</p>
+        <button id="startBtn" class="start-button">
+          <span class="button-icon">🎵</span>
+          Start
+        </button>
+      </div>
+    </section>
+
+    <!-- Section 1: Heart Chaser Game -->
+    <section id="gameSection" class="section">
+      <div class="container">
+        <div class="game-container">
+          <h2 class="section-title">Catch My Heart! 💗</h2>
+          <p class="game-instructions">Move the hook to catch the heart!</p>
+
+          <div class="game-area">
+            <!-- Hook/Claw -->
+            <div class="hook-container" id="hookContainer">
+              <div class="hook-cable"></div>
+              <div class="hook-claw">
+                <div class="claw-left"></div>
+                <div class="claw-right"></div>
+              </div>
+            </div>
+
+            <!-- Moving Hearts -->
+            <div class="moving-heart" id="movingHeart">❤️</div>
+          </div>
+
+          <div class="game-controls">
+            <button class="game-btn" id="leftBtn">
+              <span class="btn-arrow">⬅️</span> Left
+            </button>
+            <button class="game-btn seize-btn" id="seizeBtn">
+              💘 Seize My Heart!
+            </button>
+            <button class="game-btn" id="rightBtn">
+              Right <span class="btn-arrow">➡️</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: The Letter -->
+    <section id="letterSection" class="section">
+      <div class="container">
+        <div class="envelope-container">
+          <div class="envelope" id="envelope">
+            <div class="envelope-flap"></div>
+            <div class="envelope-body"></div>
+            <div class="envelope-seal">💕</div>
+          </div>
+
+          <div class="letter-paper" id="letterPaper">
+            <div class="letter-content">
+              <h2 class="letter-header">My Dearest Valentine,</h2>
+
+              <div class="letter-text">
+                <p>
+                  From the very first moment our eyes met, I knew there was
+                  something magical about you. Your smile brightens my darkest
+                  days, and your laughter is the sweetest melody I've ever
+                  heard.
+                </p>
+
+                <p>
+                  Every moment we've shared together has been a treasure. From
+                  our late-night conversations that stretch into the early
+                  morning hours, to the comfortable silences where no words are
+                  needed – each second with you feels like a gift.
+                </p>
+
+                <p>
+                  You've shown me what it means to truly care for someone. Your
+                  kindness, your warmth, your genuine spirit – these are the
+                  things that make my heart skip a beat. You see the best in
+                  people, especially in me, even when I struggle to see it
+                  myself.
+                </p>
+
+                <p>
+                  I cherish the little things: the way your eyes light up when
+                  you talk about your passions, how you always know exactly what
+                  to say to make me feel better, and the gentle way you hold my
+                  hand as if I'm the most precious thing in your world.
+                </p>
+
+                <p>
+                  With you, I've discovered that home isn't a place – it's a
+                  person. It's the feeling I get when I'm in your arms, safe and
+                  loved. You've become my best friend, my confidant, and the
+                  person I want to share every adventure with.
+                </p>
+
+                <p>
+                  This Valentine's Day, I want you to know that you mean
+                  everything to me. You've changed my life in the most beautiful
+                  ways, and I can't imagine my days without you in them.
+                </p>
+
+                <p>
+                  Thank you for being you, for loving me, and for making every
+                  ordinary moment feel extraordinary.
+                </p>
+              </div>
+
+              <div class="letter-signature">
+                <p>Forever yours,</p>
+                <p class="signature-name">With all my love 💕</p>
+              </div>
+
+              <button class="continue-btn" id="continueToGallery">
+                Continue 💖
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Photo Gallery -->
+    <section id="gallerySection" class="section">
+      <div class="container">
+        <h2 class="section-title">Our Beautiful Memories 📸</h2>
+
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="polaroid">
+              <img
+                src="assets/photo1.jpg"
+                alt="Memory 1"
+                class="polaroid-img"
+              />
+              <div class="polaroid-caption">Our First Adventure</div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="polaroid">
+              <img
+                src="assets/photo2.jpg"
+                alt="Memory 2"
+                class="polaroid-img"
+              />
+              <div class="polaroid-caption">Perfect Moments</div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="polaroid">
+              <img
+                src="assets/photo3.jpg"
+                alt="Memory 3"
+                class="polaroid-img"
+              />
+              <div class="polaroid-caption">Forever Together</div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="polaroid">
+              <img
+                src="assets/photo4.jpg"
+                alt="Memory 4"
+                class="polaroid-img"
+              />
+              <div class="polaroid-caption">Laughing Together</div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="polaroid">
+              <img
+                src="assets/photo5.jpg"
+                alt="Memory 5"
+                class="polaroid-img"
+              />
+              <div class="polaroid-caption">Sweet Memories</div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="polaroid">
+              <img
+                src="assets/photo6.jpg"
+                alt="Memory 6"
+                class="polaroid-img"
+              />
+              <div class="polaroid-caption">You & Me</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-5">
+          <button class="continue-btn" id="continueToProposal">
+            Continue 💝
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: The Proposal -->
+    <section id="proposalSection" class="section">
+      <div class="container">
+        <div class="proposal-container">
+          <h2 class="proposal-title">Will You Be My Valentine? 💕</h2>
+
+          <div class="proposal-buttons">
+            <button class="proposal-btn yes-btn" id="yesBtn">Yes! 💖</button>
+            <button class="proposal-btn no-btn" id="noBtn">No</button>
+          </div>
+
+          <div class="celebration-message" id="celebrationMessage">
+            <h1 class="celebration-title">🎉 YES! 🎉</h1>
+            <p class="celebration-text">
+              You've made me the happiest person alive!
+            </p>
+            <p class="celebration-hearts">💕💖💗💝💘</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Music Toggle -->
+    <div class="music-control">
+      <button id="musicToggle" class="music-btn">
+        <span id="musicIcon">🔊</span>
+      </button>
+    </div>
+
+    <!-- Background Audio -->
+    <audio id="bgMusic" loop>
+      <source src="assets/music.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+  </body>
 </html>

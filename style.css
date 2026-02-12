@@ -1,1 +1,666 @@
-/* Add styles here */
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Pacifico&display=swap');
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Dancing Script', cursive;
+    background: linear-gradient(135deg, #fff5f7 0%, #ffe4e9 50%, #ffd4dd 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Floating Hearts Background */
+.hearts-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.floating-heart {
+    position: absolute;
+    font-size: 25px;
+    opacity: 0.7;
+    animation: floatHeart 10s linear infinite;
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.7;
+    }
+    90% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Section Transitions - CRITICAL FIX */
+.section {
+    min-height: 100vh;
+    display: none !important; /* Force hide by default */
+    padding: 40px 20px;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.section.active {
+    display: flex !important; /* Force show when active */
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.section-title {
+    font-family: 'Pacifico', cursive;
+    font-size: 3rem;
+    color: #ff1493;
+    text-align: center;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(255, 20, 147, 0.2);
+}
+
+/* ========== START SECTION ========== */
+#startSection {
+    display: flex !important; /* Show start section by default */
+}
+
+.start-content {
+    text-align: center;
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.start-title {
+    font-family: 'Pacifico', cursive;
+    font-size: 3.5rem;
+    color: #ff1493;
+    margin-bottom: 1rem;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.start-subtitle {
+    font-size: 1.8rem;
+    color: #ff69b4;
+    margin-bottom: 3rem;
+}
+
+.start-button {
+    background: linear-gradient(135deg, #ff1493, #ff69b4);
+    color: white;
+    border: none;
+    padding: 20px 60px;
+    font-size: 2rem;
+    font-family: 'Pacifico', cursive;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(255, 20, 147, 0.4);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.start-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(255, 20, 147, 0.6);
+}
+
+.button-icon {
+    font-size: 2.5rem;
+}
+
+/* ========== GAME SECTION ========== */
+.game-container {
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.game-instructions {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #ff69b4;
+    margin-bottom: 2rem;
+}
+
+.game-area {
+    background: rgba(255, 255, 255, 0.8);
+    border: 5px solid #ffb6c1;
+    border-radius: 20px;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(255, 182, 193, 0.3);
+    margin-bottom: 2rem;
+}
+
+/* Hook/Claw */
+.hook-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: left 0.5s ease;
+    z-index: 10;
+}
+
+.hook-cable {
+    width: 4px;
+    height: 80px;
+    background: linear-gradient(180deg, #333, #666);
+    margin: 0 auto;
+    transition: height 0.8s ease;
+}
+
+.hook-claw {
+    width: 50px;
+    height: 30px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.claw-left,
+.claw-right {
+    width: 20px;
+    height: 30px;
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    border: 2px solid #daa520;
+    position: absolute;
+    transition: transform 0.3s ease;
+}
+
+.claw-left {
+    left: 5px;
+    border-radius: 5px 5px 5px 12px;
+    transform-origin: top right;
+}
+
+.claw-right {
+    right: 5px;
+    border-radius: 5px 5px 12px 5px;
+    transform-origin: top left;
+}
+
+.hook-container.grabbing .claw-left {
+    transform: rotate(-20deg);
+}
+
+.hook-container.grabbing .claw-right {
+    transform: rotate(20deg);
+}
+
+.hook-container.descending .hook-cable {
+    height: 250px;
+}
+
+/* Moving Heart */
+.moving-heart {
+    position: absolute;
+    bottom: 50px;
+    left: 10%;
+    font-size: 60px;
+    animation: moveHeart 4s linear infinite;
+    filter: drop-shadow(3px 3px 5px rgba(255, 20, 147, 0.5));
+}
+
+@keyframes moveHeart {
+    0% {
+        left: 10%;
+    }
+    50% {
+        left: 85%;
+    }
+    100% {
+        left: 10%;
+    }
+}
+
+/* Game Controls */
+.game-controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.game-btn {
+    background: linear-gradient(135deg, #ffb6c1, #ff69b4);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.3rem;
+    font-family: 'Dancing Script', cursive;
+    font-weight: bold;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+    transition: all 0.3s ease;
+}
+
+.game-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.5);
+}
+
+.game-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.seize-btn {
+    background: linear-gradient(135deg, #ff1493, #ff69b4);
+    font-size: 1.5rem;
+    padding: 15px 40px;
+}
+
+.btn-arrow {
+    font-size: 1.5rem;
+}
+
+/* ========== LETTER SECTION ========== */
+.envelope-container {
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.envelope {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    margin-bottom: 2rem;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.envelope-body {
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(135deg, #f8e8e0, #f5d5c8);
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    bottom: 0;
+}
+
+.envelope-flap {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, #f5d5c8, #f0c4b8);
+    position: absolute;
+    top: 0;
+    clip-path: polygon(0 0, 50% 60%, 100% 0);
+    transform-origin: top;
+    transition: transform 0.8s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.envelope.open .envelope-flap {
+    transform: rotateX(180deg);
+}
+
+.envelope-seal {
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3rem;
+    z-index: 10;
+    animation: sealPulse 2s ease-in-out infinite;
+}
+
+@keyframes sealPulse {
+    0%, 100% {
+        transform: translateX(-50%) scale(1);
+    }
+    50% {
+        transform: translateX(-50%) scale(1.1);
+    }
+}
+
+.letter-paper {
+    background: #fffef7;
+    padding: 50px 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    max-height: 70vh;
+    overflow-y: auto;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease;
+    display: none;
+}
+
+.letter-paper.show {
+    opacity: 1;
+    transform: translateY(0);
+    display: block;
+}
+
+.letter-header {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: #ff1493;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.letter-content {
+    max-width: 100%;
+}
+
+.letter-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.4rem;
+    line-height: 2;
+    color: #333;
+    text-align: justify;
+}
+
+.letter-text p {
+    margin-bottom: 1.5rem;
+}
+
+.letter-signature {
+    text-align: right;
+    margin-top: 3rem;
+    font-size: 1.5rem;
+    color: #ff69b4;
+}
+
+.signature-name {
+    font-family: 'Pacifico', cursive;
+    font-size: 2rem;
+    color: #ff1493;
+    margin-top: 0.5rem;
+}
+
+.continue-btn {
+    background: linear-gradient(135deg, #ff1493, #ff69b4);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.5rem;
+    font-family: 'Pacifico', cursive;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(255, 20, 147, 0.4);
+    transition: all 0.3s ease;
+    margin-top: 2rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.continue-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 20, 147, 0.6);
+}
+
+/* ========== GALLERY SECTION ========== */
+#gallerySection .container {
+    max-width: 1200px;
+}
+
+.polaroid {
+    background: white;
+    padding: 15px;
+    padding-bottom: 60px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    transform: rotate(-2deg);
+}
+
+.polaroid:nth-child(even) {
+    transform: rotate(2deg);
+}
+
+.polaroid:hover {
+    transform: rotate(0deg) scale(1.05);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+.polaroid-img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 3px;
+}
+
+.polaroid-caption {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.3rem;
+    color: #333;
+    text-align: center;
+    margin-top: 15px;
+}
+
+/* ========== PROPOSAL SECTION ========== */
+.proposal-container {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.proposal-title {
+    font-family: 'Pacifico', cursive;
+    font-size: 3.5rem;
+    color: #ff1493;
+    margin-bottom: 3rem;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+.proposal-buttons {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin-bottom: 2rem;
+    position: relative;
+    min-height: 100px;
+}
+
+.proposal-btn {
+    background: linear-gradient(135deg, #ff1493, #ff69b4);
+    color: white;
+    border: none;
+    padding: 20px 50px;
+    font-size: 2rem;
+    font-family: 'Pacifico', cursive;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(255, 20, 147, 0.4);
+    transition: all 0.3s ease;
+}
+
+.proposal-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(255, 20, 147, 0.6);
+}
+
+.yes-btn {
+    background: linear-gradient(135deg, #32cd32, #00fa9a);
+}
+
+.no-btn {
+    background: linear-gradient(135deg, #ddd, #bbb);
+    position: relative;
+}
+
+.celebration-message {
+    display: none;
+    animation: celebrationPop 0.8s ease-out;
+}
+
+.celebration-message.show {
+    display: block;
+}
+
+@keyframes celebrationPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.celebration-title {
+    font-family: 'Pacifico', cursive;
+    font-size: 4rem;
+    color: #32cd32;
+    margin-bottom: 1rem;
+}
+
+.celebration-text {
+    font-size: 2rem;
+    color: #ff69b4;
+    margin-bottom: 1rem;
+}
+
+.celebration-hearts {
+    font-size: 3rem;
+    animation: heartbeat 1s ease-in-out infinite;
+}
+
+/* Music Control */
+.music-control {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+}
+
+.music-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff1493, #ff69b4);
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(255, 20, 147, 0.4);
+    transition: all 0.3s ease;
+}
+
+.music-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(255, 20, 147, 0.6);
+}
+
+.music-btn.playing {
+    animation: musicPulse 1s ease-in-out infinite;
+}
+
+@keyframes musicPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Scrollbar Styling */
+.letter-paper::-webkit-scrollbar {
+    width: 10px;
+}
+
+.letter-paper::-webkit-scrollbar-track {
+    background: #ffe4e9;
+    border-radius: 10px;
+}
+
+.letter-paper::-webkit-scrollbar-thumb {
+    background: #ff69b4;
+    border-radius: 10px;
+}
+
+.letter-paper::-webkit-scrollbar-thumb:hover {
+    background: #ff1493;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .start-title {
+        font-size: 2.5rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .game-area {
+        height: 300px;
+    }
+
+    .moving-heart {
+        font-size: 45px;
+        bottom: 30px;
+    }
+
+    .letter-text {
+        font-size: 1.2rem;
+    }
+
+    .proposal-title {
+        font-size: 2.5rem;
+    }
+
+    .proposal-buttons {
+        flex-direction: column;
+        min-height: auto;
+        gap: 20px;
+    }
+}
