@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     createFloatingHearts();
     initializeGame();
     initializeLetter();
-    initializeGallery();
     initializeProposal();
     initializeMusicControl();
 });
@@ -11,19 +10,27 @@ document.addEventListener('DOMContentLoaded', function() {
 // ========== FLOATING HEARTS BACKGROUND ==========
 function createFloatingHearts() {
     const heartsContainer = document.getElementById('heartsBackground');
-    const heartSymbols = ['💕', '💖', '💗', '💝', '💘', '❤️'];
+    const stickerImages = [
+        'assets/sticker1.png',
+        'assets/sticker2.png',
+        'assets/sticker3.png',
+        'assets/sticker4.png',
+        'assets/sticker5.png'
+    ];
     
     setInterval(() => {
-        const heart = document.createElement('div');
-        heart.className = 'floating-heart';
-        heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
-        heart.style.left = Math.random() * 100 + '%';
-        heart.style.animationDuration = (Math.random() * 5 + 8) + 's';
-        heart.style.fontSize = (Math.random() * 15 + 20) + 'px';
+        const sticker = document.createElement('img');
+        sticker.className = 'floating-sticker';
+        sticker.src = stickerImages[Math.floor(Math.random() * stickerImages.length)];
+        sticker.style.left = Math.random() * 100 + '%';
+        sticker.style.animationDuration = (Math.random() * 8 + 10) + 's'; // Slower animation
+        const size = Math.random() * 20 + 30;
+        sticker.style.width = size + 'px';
+        sticker.style.height = size + 'px';
         
-        heartsContainer.appendChild(heart);
+        heartsContainer.appendChild(sticker);
         
-        setTimeout(() => heart.remove(), 10000);
+        setTimeout(() => sticker.remove(), 18000); // Remove after animation finishes
     }, 800);
 }
 
@@ -150,8 +157,8 @@ function initializeGame() {
 function initializeLetter() {
     const envelope = document.getElementById('envelope');
     const letterPaper = document.getElementById('letterPaper');
-    const continueToGallery = document.getElementById('continueToGallery');
-    const gallerySection = document.getElementById('gallerySection');
+    const continueToProposal = document.getElementById('continueToProposal');
+    const proposalSection = document.getElementById('proposalSection');
     const letterSection = document.getElementById('letterSection');
     
     // Open envelope on click
@@ -164,20 +171,9 @@ function initializeLetter() {
         }, 800);
     });
     
-    // Continue to gallery
-    continueToGallery.addEventListener('click', function() {
-        transitionToSection(letterSection, gallerySection);
-    });
-}
-
-// ========== GALLERY SECTION ==========
-function initializeGallery() {
-    const continueToProposal = document.getElementById('continueToProposal');
-    const gallerySection = document.getElementById('gallerySection');
-    const proposalSection = document.getElementById('proposalSection');
-    
+    // Continue to proposal
     continueToProposal.addEventListener('click', function() {
-        transitionToSection(gallerySection, proposalSection);
+        transitionToSection(letterSection, proposalSection);
     });
 }
 
@@ -234,31 +230,39 @@ function initializeProposal() {
 
 // Create love shower animation
 function createLoveShower() {
-    const loveSymbols = ['💕', '💖', '💗', '💝', '💘', '❤️', '💓', '💞'];
+    const stickerImages = [
+        'assets/sticker1.png',
+        'assets/sticker2.png',
+        'assets/sticker3.png',
+        'assets/sticker4.png',
+        'assets/sticker5.png'
+    ];
     
     for (let i = 0; i < 50; i++) {
         setTimeout(() => {
-            const love = document.createElement('div');
-            love.className = 'floating-heart';
-            love.textContent = loveSymbols[Math.floor(Math.random() * loveSymbols.length)];
-            love.style.position = 'fixed';
-            love.style.top = '-50px';
-            love.style.left = Math.random() * 100 + '%';
-            love.style.fontSize = (Math.random() * 20 + 30) + 'px';
-            love.style.zIndex = '9999';
+            const sticker = document.createElement('img');
+            sticker.className = 'floating-sticker';
+            sticker.src = stickerImages[Math.floor(Math.random() * stickerImages.length)];
+            sticker.style.position = 'fixed';
+            sticker.style.top = '-100px';
+            sticker.style.left = Math.random() * 100 + '%';
+            sticker.style.zIndex = '9999';
+            const size = Math.random() * 40 + 50;
+            sticker.style.width = size + 'px';
+            sticker.style.height = size + 'px';
             
-            document.body.appendChild(love);
+            document.body.appendChild(sticker);
             
-            love.animate([
+            sticker.animate([
                 { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
-                { transform: `translateY(${window.innerHeight + 100}px) rotate(${Math.random() * 720}deg)`, opacity: 0.5 }
+                { transform: `translateY(${window.innerHeight + 100}px) rotate(${Math.random() * 720 - 360}deg)`, opacity: 0 }
             ], {
-                duration: Math.random() * 2000 + 3000,
+                duration: Math.random() * 3000 + 4000,
                 easing: 'linear'
             });
             
-            setTimeout(() => love.remove(), 5000);
-        }, i * 100);
+            setTimeout(() => sticker.remove(), 7000);
+        }, i * 150);
     }
 }
 
