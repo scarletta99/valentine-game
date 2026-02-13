@@ -481,7 +481,7 @@ body {
     color: white;
     border: none;
     padding: 20px 50px;
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-family: 'Pacifico', cursive;
     border-radius: 50px;
     cursor: pointer;
@@ -545,26 +545,11 @@ body {
 }
 
 .sticker-img {
-    width: 80px;
-    height: 80px;
+    width: 250px;
+    height: 250px;
     animation: heartbeat 1s ease-in-out infinite;
 }
 
-.sticker-img:nth-child(2) {
-    animation-delay: 0.2s;
-}
-
-.sticker-img:nth-child(3) {
-    animation-delay: 0.4s;
-}
-
-.sticker-img:nth-child(4) {
-    animation-delay: 0.6s;
-}
-
-.sticker-img:nth-child(5) {
-    animation-delay: 0.8s;
-}
 
 /* Music Control */
 .music-control {

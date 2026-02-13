@@ -224,10 +224,6 @@ function initializeProposal() {
 function createLoveShower() {
     const stickerImages = [
         'assets/gif1.gif',
-        'assets/gif2.gif',
-        'assets/gif3.gif',
-        'assets/gif4.gif',
-        'assets/gif5.gif'
     ];
     
     for (let i = 0; i < 50; i++) {
