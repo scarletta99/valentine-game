@@ -10,27 +10,19 @@ document.addEventListener('DOMContentLoaded', function() {
 // ========== FLOATING HEARTS BACKGROUND ==========
 function createFloatingHearts() {
     const heartsContainer = document.getElementById('heartsBackground');
-    const stickerImages = [
-        'assets/sticker1.png',
-        'assets/sticker2.png',
-        'assets/sticker3.png',
-        'assets/sticker4.png',
-        'assets/sticker5.png'
-    ];
+    const heartSymbols = ['💕', '💖', '💗', '💝', '💘', '❤️'];
     
     setInterval(() => {
-        const sticker = document.createElement('img');
-        sticker.className = 'floating-sticker';
-        sticker.src = stickerImages[Math.floor(Math.random() * stickerImages.length)];
-        sticker.style.left = Math.random() * 100 + '%';
-        sticker.style.animationDuration = (Math.random() * 8 + 10) + 's'; // Slower animation
-        const size = Math.random() * 20 + 30;
-        sticker.style.width = size + 'px';
-        sticker.style.height = size + 'px';
+        const heart = document.createElement('div');
+        heart.className = 'floating-heart';
+        heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.animationDuration = (Math.random() * 5 + 8) + 's';
+        heart.style.fontSize = (Math.random() * 15 + 20) + 'px';
         
-        heartsContainer.appendChild(sticker);
+        heartsContainer.appendChild(heart);
         
-        setTimeout(() => sticker.remove(), 18000); // Remove after animation finishes
+        setTimeout(() => heart.remove(), 10000);
     }, 800);
 }
 
@@ -231,11 +223,11 @@ function initializeProposal() {
 // Create love shower animation
 function createLoveShower() {
     const stickerImages = [
-        'assets/sticker1.png',
-        'assets/sticker2.png',
-        'assets/sticker3.png',
-        'assets/sticker4.png',
-        'assets/sticker5.png'
+        'assets/gif1.gif',
+        'assets/gif2.gif',
+        'assets/gif3.gif',
+        'assets/gif4.gif',
+        'assets/gif5.gif'
     ];
     
     for (let i = 0; i < 50; i++) {
